@@ -1,0 +1,64 @@
+
+@base = http://localhost:3000
+
+curl -H 'Content-Type: application/json' \
+      -d '{ "title":"foo","body":"bar", "id": 1}' \
+      -X POST \
+      http://localhost:9999
+
+
+###
+GET {{base}}/README.md 
+
+
+###
+GET {{base}} 
+
+###
+GET {{base}}/README.md 
+
+###
+POST {{base}}/api/posts
+Content-Type: application/json
+
+{
+  "title": "foo",
+  "body": "bar",
+  "id": 1
+}
+
+### 
+POST {{base}}/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="SAP_BTP_FSD.pdf"
+Content-Type: application/pdf
+
+< ./SAP_BTP_FSD.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+GET {{base}}/SAP_BTP_FSD.pdf
+
+###
+PUT {{base}}/api/posts/1
+Content-Type: application/json  
+
+{
+  "title": "foo",
+  "body": "bar",
+  "id": 1
+}
+
+###
+DELETE {{base}}/api/posts/1
+
+###
+PATCH {{base}}/api/posts/1
+Content-Type: application/json
+
+{
+  "title": "foo",
+  "body": "bar"
+}
